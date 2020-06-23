@@ -1,0 +1,24 @@
+.user-info {
+  display: flex;
+  justify-content: flex-end;
+  align-self: center;
+
+  &-avatar {
+    width: 50px;
+    height: 50px;
+  }
+  &-details {
+    color: #8c8c8c;
+    align-self: center;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Open Sans';
+  }
+}
+@media (max-width: 936px) {
+  .user-info {
+    grid-template-rows: repeat(4, auto);
+    grid-template-columns: none;
+    grid-row-gap: 20px;
+  }
+}
