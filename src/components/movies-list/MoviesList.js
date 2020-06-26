@@ -1,32 +1,44 @@
-// import React, {useEffect} from 'react';
-// // import { getMovies } from "../../actions/getMovies";
-// import { connect } from 'react-redux';
-// const MoviesList = (props) => {
-//     useEffect(() => {
-//         const { movies } = this.props;
-//         if (!movies.length) {
-//             this.props.getMovies && this.props.getMovies();
-//         }
-//     });
-//     const { movies } = this.props;
-//     return (
-//
-//         <div>
-//             {
-//                 movies.map((item) => {
-//
-//                 })
-//             }
-//         </div>
-//     );
-// };
-// const mapStateToProps = (store) => {
-//     const {moviesReducer } = store;
-//     return {
-//         movies: moviesReducer.movies
-//     }
-// };
-// const mapDispatchToProps = ({
-//     getMovies
-// });
-// export default connect(mapStateToProps, mapDispatchToProps)(MoviesList);
+import React, {useEffect, useState} from 'react';
+import { fetchData } from "../../actions/getMovies";
+import { connect } from 'react-redux';
+import { MovieListCard } from "../movie-list-card/MovieListCard";
+import uniqueId from "uniqueid";
+
+const MoviesList = (props) => {
+    const [id] = useState(uniqueId());
+    useEffect(() => {
+        const { movies } = props;
+        if (!movies.length) {
+            props.fetchData && props.fetchData();
+        }
+    }, []);
+
+    // const getMoviesList = () => {
+    //     const { movies } = props;
+    //     console.log("====================");
+    //     console.log("this props movies ", movies);
+    //     return movies.data.map((movie, key) => {
+    //         return <div key={key}>{movie.id}</div>
+    //     })
+    // };
+
+    const { movies } = props;
+    return (
+        <div className="container" >
+            {
+                movies.data.map(movie => (
+                        <MovieListCard movies={movie.results} key={id} />
+                    ))
+            }
+        </div>
+    );
+};
+const mapStateToProps = (store) => {
+    return {
+        movies: store.dataReducer
+    };
+};
+const mapDispatchToProps = ({
+    fetchData
+});
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesList);

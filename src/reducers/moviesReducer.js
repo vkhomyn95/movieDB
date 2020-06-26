@@ -6,26 +6,25 @@ const initialState = {
 };
 
 export const dataReducer = (state= initialState, action) => {
-    debugger
     switch (action.type) {
         case FETCHING_DATA:
             return  {
                 ...state,
                 data: [],
                 isFetching: true
-            }
+            };
         case FETCHING_DATA_SUCCESS:
             return {
                 ...state,
                 data: action.data,
                 isFetching: false
-            }
+            };
         case FETCHING_DATA_FAIL:
             return {
                 ...state,
                 isFetching: false,
                 error: true
-        }
+        };
         default: return state;
     }
 };

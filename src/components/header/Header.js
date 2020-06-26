@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {UserInfo} from "../user-info/UserInfo";
+import {headerDropdownLinks} from "../../constants";
 import Logo from '../../assets/logo.png';
 import './Header.scss';
 import 'font-awesome/css/font-awesome.min.css';
@@ -7,10 +8,22 @@ import 'font-awesome/css/font-awesome.min.css';
 export const Header = () => {
     const [isNavVisible, setNavVisibility] = useState(false);
     const [isSmallScreen, setSmallScreen] = useState(false);
+    const [isDropdownLinks, setDropdownLinks] = useState(false);
+
+    const container = React.createRef();
 
     const toggleNav = () => {
         setNavVisibility(!isNavVisible);
+        setDropdownLinks(!isDropdownLinks);
     };
+
+    // const handleClickOutside = event => {
+    //     if (container.current && !container.current.contains(event.target)) {
+    //         this.setState({
+    //             open: false,
+    //         });
+    //     }
+    // };
 
     useEffect(() => {
         const mediaQuery = window.matchMedia("(max-width: 936px)");
@@ -30,12 +43,24 @@ export const Header = () => {
         }
     };
     return (
-        <div className="may-header">
+        <div className="may-header" ref={container}>
             <div className="may-header-wrapper navbar">
                 <nav className="navbar navbar-expand-lg navbar-light">
                     <img src={Logo} className="may-header-logo" alt="logo"/>
                 </nav>
-                <button onClick={toggleNav} className="toggler"><i className="fa fa-bars fa-2x" aria-hidden="true"></i></button>
+                <div className="dropdown-wrapper">
+                    <button onClick={toggleNav} className="toggler"><i className="fa fa-bars fa-2x" aria-hidden="true"></i></button>
+                    <div className={`dropdown-content${isDropdownLinks ? '-toggled' : '' }`}>
+                        <ul>
+                            { isDropdownLinks &&
+                            headerDropdownLinks.map((el, key) => (
+                                <li key={key}>{ el }</li>
+                            ))
+                            }
+                        </ul>
+                    </div>
+                </div>
+
                 <form className="may-header-search-form">
                     <input type="text"
                            className="may-header-input"

@@ -7,14 +7,13 @@ class PostPreviewComponent extends Component {
     componentDidMount() {
         console.log('PostPreview componentWillUnmount');
         this.props.fetchData();
-        debugger
     }
     getMoviesList () {
         const { movies } = this.props;
         console.log("====================");
-        console.log("this props movies ", movies)
-        debugger
-        return movies.movies.map((movie, key) => {
+        console.log("this props movies ", movies);
+
+        return movies.data.map((movie, key) => {
             return <div key={key}>{movie.id}</div>
         })
     }
@@ -25,7 +24,7 @@ class PostPreviewComponent extends Component {
         const { movies } = this.props;
         console.log(movies);
         return (
-            <div className="ef">
+            <div className="container" ref={this.container}>
                 {this.props.movies.isFetching && <div> Loading </div>}
                 {
                     this.props.movies.data.length ?
@@ -48,4 +47,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export const MoviePreview = connect(mapStateToProps, mapDispatchToProps)(PostPreviewComponent);
+export const MoviePreviewInfo = connect(mapStateToProps, mapDispatchToProps)(PostPreviewComponent);
