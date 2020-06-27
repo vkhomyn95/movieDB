@@ -3,42 +3,43 @@ import { fetchData } from "../../actions/getMovies";
 import { connect } from 'react-redux';
 import { MovieListCard } from "../movie-list-card/MovieListCard";
 import uniqueId from "uniqueid";
+import {fetchGenresData} from "../../actions/getGenres";
 
 const MoviesList = (props) => {
     const [id] = useState(uniqueId());
     useEffect(() => {
-        const { movies } = props;
+        const { movies, genres } = props;
         if (!movies.length) {
-            props.fetchData && props.fetchData();
+            props.fetchData && props.fetchData() && props.fetchGenresData();;
         }
+
     }, []);
 
-    // const getMoviesList = () => {
-    //     const { movies } = props;
-    //     console.log("====================");
-    //     console.log("this props movies ", movies);
-    //     return movies.data.map((movie, key) => {
-    //         return <div key={key}>{movie.id}</div>
-    //     })
-    // };
-
-    const { movies } = props;
+    const { movies, genres } = props;
     return (
         <div className="container" >
+            <div className="row">
             {
-                movies.data.map(movie => (
-                        <MovieListCard movies={movie.results} key={id} />
+                movies.map(movie => (
+                        <MovieListCard movie={movie} key={movie.id} />
                     ))
             }
+            </div>
         </div>
     );
 };
+
 const mapStateToProps = (store) => {
+    const { dataReducer, genreReducer } = store;
+    debugger
     return {
-        movies: store.dataReducer
+        movies: dataReducer.movies,
+        genres: genreReducer.genres
     };
 };
 const mapDispatchToProps = ({
-    fetchData
+    fetchData,
+    fetchGenresData
+
 });
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesList);

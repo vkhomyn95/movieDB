@@ -1,35 +1,36 @@
 import {
-    POSTS_LOADED,
-    START_POSTS_LOADING,
-    STOP_POSTS_LOADING
+    GENRES_LOADED,
+    START_GENRES_LOADING,
+    STOP_GENRES_LOADING
 } from '../action-type';
 const initialState = {
-    movies: [],
+    genres: [],
     isFetching: false,
     error: false
 };
 
-export const dataReducer = (store = initialState, action) => {
+export const genreReducer = (store= initialState, action) => {
     debugger
-    switch(action.type) {
-        case POSTS_LOADED: {
+    switch (action.type) {
+        case GENRES_LOADED: {
             return {
                 ...store,
-                movies: action.payload
+                genres: action.payload,
             }
         }
-        case START_POSTS_LOADING: {
+        case START_GENRES_LOADING: {
             return {
                 ...store,
                 isPostsLoading: true
             }
         }
-        case STOP_POSTS_LOADING: {
+        case STOP_GENRES_LOADING: {
             return {
                 ...store,
                 isPostsLoading: false
             }
         }
+
         default: return store;
     }
 };

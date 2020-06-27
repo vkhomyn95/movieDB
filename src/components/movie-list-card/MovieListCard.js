@@ -1,25 +1,68 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { PosterPreview } from "../poster-preview/PosterPreview";
+import {MoviePreviewInfo} from "../movie-preview/MoviePreviewInfo";
+import {connect} from "react-redux";
+import { GenreBadge } from "../genres/GenreBadge";
 
-export const MovieListCard = (props) => {
-    const { movies } = props;
-    if (!movies) return null;
+
+export const MovieListCardComponent = (props) => {
+    // useEffect(() => {
+    //     const { movies, genres } = props;
+    //     fetchGenresData()
+        // if (!genres.length) {
+        //     props.fetchGenresData && props.fetchGenresData();
+        // }
+
+    // }, []);
+    // console.log(genres.genres)
+    // let arr = [];
+    // movies.forEach(id => console.log(id.genre_ids))
+    // movies.forEach(id => arr.push(genres.genres.find(val => val.id === id)))
+    // console.log(arr)
+    // let arr =[]
+    // const {movies: {genre_ids}} = props;
+    // console.log(genre_ids)
+    // if (genre_ids){
+    //         genre_ids.forEach(id => arr.push(genres.genres.find(value=>value.id === id)));
+    //     }
+    // console.log(arr)
+    //
+    // console.log(genres)
+    // debugger
+    //
+    // if (!movies) return null;
+    const {movie, arr} = props;
+    // console.log(genres)
+
     return (
-        <div className="row">
-            {
-                movies.map(movie => (
-                    <div className="col-sm-3" key={movie.id}>
-                        <div className="card">
-                            <PosterPreview poster_path={movie.poster_path} key={movie.id}/>
-                            <div className="card-block">
-                                <h4 className="card-title">{ movie.title } </h4>
-                                <p className="card-text">{ movie.overview }</p>
-                            </div>
-                        </div>
+             <div className="col-sm-3" key={movie.id}>
+                    <div className="card">
+                        <PosterPreview poster_path={movie.poster_path} key={movie.id}/>
+                        <GenreBadge genres={arr}/>
+                        <MoviePreviewInfo movieInfo={movie}/>
                     </div>
-
-                ))
-            }
-        </div>
+                </div>
     );
 };
+const mapDispathToProps = ({
+    // fetchGenresData
+});
+const mapStateToProps = (store, props)=>{
+    const {genreReducer: {genres}} = store;
+    const {movie: {genre_ids}} = props;
+    // const
+    // const {genre_ids} = movies;
+    // console.log(movies)
+    // console.log(store)
+    // console.log(store)
+    // console.log(data.genre_ids)
+    let arr = [];
+    if (genre_ids){
+        genre_ids.forEach(id => arr.push(genres.find(value=>value.id === id)));
+    }
+    return {
+        genres: store.genreReducer,
+        arr
+    }
+};
+export const MovieListCard = connect(mapStateToProps, mapDispathToProps)(MovieListCardComponent);
