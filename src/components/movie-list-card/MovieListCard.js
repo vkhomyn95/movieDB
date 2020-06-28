@@ -32,7 +32,6 @@ export const MovieListCardComponent = (props) => {
     //
     // if (!movies) return null;
     const {movie, arr} = props;
-    // console.log(genres)
 
     return (
              <div className="col-sm-3" key={movie.id}>
@@ -45,17 +44,10 @@ export const MovieListCardComponent = (props) => {
     );
 };
 const mapDispathToProps = ({
-    // fetchGenresData
 });
 const mapStateToProps = (store, props)=>{
     const {genreReducer: {genres}} = store;
     const {movie: {genre_ids}} = props;
-    // const
-    // const {genre_ids} = movies;
-    // console.log(movies)
-    // console.log(store)
-    // console.log(store)
-    // console.log(data.genre_ids)
     let arr = [];
     if (genre_ids){
         genre_ids.forEach(id => arr.push(genres.find(value=>value.id === id)));

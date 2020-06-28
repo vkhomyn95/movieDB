@@ -1,26 +1,27 @@
 import {
     ERROR_LOADING_POSTS,
-    FETCHING_DATA,
-    FETCHING_DATA_SUCCESS, GENRES_LOADED,
-    POSTS_LOADED, START_POSTS_LOADING, STOP_POSTS_LOADING
+    POSTS_LOADED,
+    START_POSTS_LOADING,
+    STOP_POSTS_LOADING
 } from "../action-type";
 import { getPopularFilms } from "../api/getPopular";
-import {getFilmGenres} from "../api/getMoviesGenre";
-import {fetchGenresData} from "./getGenres";
+import {API_KEY} from "../constants";
 
-export const fetchData = (genre) => {
+export const fetchData = (pageNumber) => {
+    if (typeof(pageNumber)==='undefined') pageNumber = 1;
+    debugger
     return (dispatch, getState) => {
         dispatch(startLoadingPosts());
-
-        return fetch(getPopularFilms)
+        return fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${pageNumber}`)
             .then(response => response.json())
             .then((data) => {
                 console.log(dispatch, getState)
                 debugger
                 dispatch({
                     type: POSTS_LOADED,
-                    payload: data.results,
-
+                    payload: [...data.results],
+                    currentPage: pageNumber,
+                    totalResults: data.total_results
                 });
                 // return fetch (getFilmGenres)
                 //     .then(response => response.json())

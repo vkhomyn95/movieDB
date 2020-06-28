@@ -10,7 +10,7 @@ const initialState = {
 };
 
 export const genreReducer = (store= initialState, action) => {
-    debugger
+    // debugger
     switch (action.type) {
         case GENRES_LOADED: {
             return {

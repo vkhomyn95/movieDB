@@ -8,7 +8,7 @@ export const GenreBadge = (props) => {
         <div>
             {
                 genres.map(genre => (
-                    <li>{genre.name}</li>
+                    <li key={genre.id}> {genre.name}</li>
                 ))
             }
         </div>
