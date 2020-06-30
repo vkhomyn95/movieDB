@@ -33,6 +33,7 @@ export const MovieListCardComponent = (props) => {
     // if (!movies) return null;
     const {movie, arr} = props;
 
+
     return (
              <div className="col-sm-3" key={movie.id}>
                     <div className="card">

@@ -7,12 +7,12 @@ import {
 import { getPopularFilms } from "../api/getPopular";
 import {API_KEY} from "../constants";
 
-export const fetchData = (pageNumber) => {
+export const fetchData = (pageNumber, getMvDataType) => {
     if (typeof(pageNumber)==='undefined') pageNumber = 1;
     debugger
     return (dispatch, getState) => {
         dispatch(startLoadingPosts());
-        return fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${pageNumber}`)
+        return fetch(`https://api.themoviedb.org/3/movie/${getMvDataType}?api_key=${API_KEY}&language=en-US&page=${pageNumber}`)
             .then(response => response.json())
             .then((data) => {
                 console.log(dispatch, getState)

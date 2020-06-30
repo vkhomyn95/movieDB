@@ -51,10 +51,10 @@ export const Header = () => {
                 <div className="dropdown-wrapper">
                     <button onClick={toggleNav} className="toggler"><i className="fa fa-bars fa-2x" aria-hidden="true"></i></button>
                     <div className={`dropdown-content${isDropdownLinks ? '-toggled' : '' }`}>
-                        <ul>
+                        <ul id="header-links-nav">
                             { isDropdownLinks &&
                             headerDropdownLinks.map((el, key) => (
-                                <li key={key}>{ el }</li>
+                                <li id={el.ref} key={key} >{ el.name }</li>
                             ))
                             }
                         </ul>

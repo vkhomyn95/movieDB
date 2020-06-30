@@ -9,14 +9,22 @@ import {Pagination} from "../pagination/Pagination";
 const MoviesList = (props) => {
     const {currentPage, totalResults} = props;
     const [page, setPage] = useState(currentPage);
+    const [getMvDataType, setMvData] = useState('now_playing');
+    let getNavLinkClicked = document.getElementById('header-links-nav');
     console.log(page,currentPage)
     useEffect(() => {
         const { movies, currentPage } = props;
         console.log(currentPage)
         if ((!movies.length) || currentPage) {
-            props.fetchData && props.fetchData(page) && props.fetchGenresData();
+            props.fetchData && props.fetchData(page, getMvDataType) && props.fetchGenresData();
         }
-    }, [page]);
+    }, [page, getMvDataType]);
+
+    if (getNavLinkClicked){
+        getNavLinkClicked.addEventListener('click', function (e) {
+            setMvData(e.target.id)
+        })
+    };
 
     const nextPage = (pageNumber) => {
         if (typeof(pageNumber)==='undefined') pageNumber = 1;
