@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './StarRating.scss';
 import 'font-awesome/css/font-awesome.min.css';
 
@@ -10,7 +10,6 @@ export const StarRating = (props) => {
     function getStars(rating) {
         rating = Math.round(rating * 2) / 2;
         let output = [];
-        // Append all the filled whole stars
         for (var i = rating; i >= 1; i--)
             output.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
         if (i == .5) output.push('<i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
@@ -22,7 +21,6 @@ export const StarRating = (props) => {
     }
 
     return (
-        // <span id="stars"></span>
         <div dangerouslySetInnerHTML={{ __html: getStars(rtg) }}/>
     );
 };

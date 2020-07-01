@@ -12,7 +12,7 @@ const initialState = {
 };
 
 export const dataReducer = (store = initialState, action) => {
-    debugger
+    // debugger
     switch(action.type) {
         case POSTS_LOADED: {
 

@@ -2,6 +2,7 @@ import React from 'react';
 import {fetchData} from "../../actions/getMovies";
 import {connect} from "react-redux";
 import { StarRating } from "../stars-rating/StarRating";
+import './MoviePreviewInfo.scss';
 
 const PostPreviewComponent = (props) => {
     const { movieInfo, genres } = props;
