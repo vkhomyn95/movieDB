@@ -20,7 +20,7 @@ export function MoviesPage () {
         <DarkThemeContextWrapper>
             <DetectViewPortWrapper>
                 <Provider store={appStore()}>
-                    <Router>
+                    <Router basename="/movieDB/">
                         <Header/>
                         <Switch>
                             <Route path="/" exact>
