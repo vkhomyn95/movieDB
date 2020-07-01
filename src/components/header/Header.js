@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {UserInfo} from "../user-info/UserInfo";
 import {headerDropdownLinks} from "../../constants";
 import Logo from '../../assets/logo.png';
+import LogoDark from '../../assets/logo-dark.png'
 import './Header.scss';
 import 'font-awesome/css/font-awesome.min.css';
+import {DarkThemeContext} from "../../context/DarkThemeContext";
 
 export const Header = () => {
     const [isNavVisible, setNavVisibility] = useState(false);
@@ -42,11 +44,13 @@ export const Header = () => {
             setSmallScreen(false);
         }
     };
+    const darkTheme = useContext(DarkThemeContext);
+    const {isDarkTheme,toggleTheme} = darkTheme;
     return (
-        <div className="may-header" ref={container}>
+        <div className={`${!isDarkTheme ? 'may-header-dark' : 'may-header' } ref={container}`}>
             <div className="may-header-wrapper navbar">
                 <nav className="navbar navbar-expand-lg navbar-light">
-                    <a href="/"><img src={Logo} className="may-header-logo" alt="logo"/></a>
+                    <a href="/"><img src={`${isDarkTheme ? Logo : LogoDark}`} className="may-header-logo" alt="logo"/></a>
                 </nav>
                 <div className="dropdown-wrapper">
                     <button onClick={toggleNav} className="toggler"><i className="fa fa-bars fa-2x" aria-hidden="true"></i></button>
@@ -67,10 +71,12 @@ export const Header = () => {
                            placeholder="&#xF002;"
                     />
                 </form>
+                <button className={`btn btn-primary ${isDarkTheme && 'dark'}`} onClick={toggleTheme}>Dark mode: {!isDarkTheme ? 'on' : 'off'}</button>
                 {(!isSmallScreen || isNavVisible ) && (
                     <UserInfo/>
                 )}
             </div>
         </div>
+
     );
 };

@@ -5,16 +5,11 @@ import { StarRating } from "../stars-rating/StarRating";
 import './MoviePreviewInfo.scss';
 
 const PostPreviewComponent = (props) => {
-    const { movieInfo, genres } = props;
+    const { movieInfo } = props;
     const {vote_average} = movieInfo;
 
-    // const genresId = movieInfo.genre_ids.filter(id => !genres.genres.id.includes(id));
-    // console.log(genresId)
-    // if (!genres) return null;
-    // if (!movies) return null;
     return (
         <div className="card-block">
-            <h4 className="card-title">{ movieInfo.title } </h4>
             <p className="card-text">{ movieInfo.overview }</p>
             <StarRating rating={vote_average}/>
         </div>

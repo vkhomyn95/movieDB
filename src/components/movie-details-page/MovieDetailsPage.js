@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {API_KEY} from "../../constants";
 import {MovieDetailCard} from "../movie-details-page-card/MovieDetailCard";
+import './MovieDetailsPage.scss'
+import {DarkThemeContext} from "../../context/DarkThemeContext";
 
 export const MovieDetailsPage = (props) => {
     const [movie, setMovie] = useState({});
@@ -26,13 +28,15 @@ export const MovieDetailsPage = (props) => {
             setError('Cant find film')
         }
     };
+    const darkTheme = useContext(DarkThemeContext);
+    const {isDarkTheme,toggleTheme} = darkTheme;
     return (
-        <div>
+        <div className={`${!isDarkTheme ? 'movie-card-wrapper-dark' : 'movie-card-wrapper' }`}>
             {
                 isLoading && (<div>Loading</div>)
             }
             {
-                !isLoading && movie && (
+                !isLoading && !error && (
                     <MovieDetailCard movie={movie} />
                 )
             }

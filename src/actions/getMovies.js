@@ -4,7 +4,6 @@ import {
     START_POSTS_LOADING,
     STOP_POSTS_LOADING
 } from "../action-type";
-import { getPopularFilms } from "../api/getPopular";
 import {API_KEY} from "../constants";
 
 export const fetchData = (pageNumber, getMvDataType) => {

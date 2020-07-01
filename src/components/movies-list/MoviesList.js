@@ -1,21 +1,20 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { fetchData } from "../../actions/getMovies";
 import { connect } from 'react-redux';
 import { MovieListCard } from "../movie-list-card/MovieListCard";
-import uniqueId from "uniqueid";
 import {fetchGenresData} from "../../actions/getGenres";
 import {Pagination} from "../pagination/Pagination";
+import {ViewPortContext} from "../../context/ViewPortContext";
 import './MovieList.scss'
+import {DarkThemeContext} from "../../context/DarkThemeContext";
 
 const MoviesList = (props) => {
     const {currentPage, totalResults} = props;
     const [page, setPage] = useState(currentPage);
     const [getMvDataType, setMvData] = useState('now_playing');
     let getNavLinkClicked = document.getElementById('header-links-nav');
-    console.log(page,currentPage)
     useEffect(() => {
         const { movies, currentPage } = props;
-        console.log(currentPage)
         if ((!movies.length) || currentPage) {
             props.fetchData && props.fetchData(page, getMvDataType) && props.fetchGenresData();
         }
@@ -33,21 +32,25 @@ const MoviesList = (props) => {
     };
 
     const { movies } = props;
-    const numberPages = Math.floor(totalResults/ 20)
+    const darkTheme = useContext(DarkThemeContext);
+    const {isDarkTheme} = darkTheme;
+    const numberPages = Math.floor(totalResults/ 20);
     return (
-        <div className="container" >
-                <div className="card-columns">
+            <div className={`${isDarkTheme ? 'container-wrapper-white' : 'container-wrapper-dark'}`}>
+                <div className="container" >
+                    <div className="card-columns">
+                        {
+                            movies.map(movie => (
+                                <MovieListCard movie={movie} key={movie.id} />
+                            ))
+                        }
+                    </div>
                     {
-                        movies.map(movie => (
-                            <MovieListCard movie={movie} key={movie.id} />
-                        ))
+                        <Pagination  pages={numberPages} nextPage={nextPage} currentPage={currentPage}/>
                     }
-                </div>
-            {
-                <Pagination pages={numberPages} nextPage={nextPage} currentPage={currentPage}/>
-            }
 
-        </div>
+                </div>
+            </div>
     );
 };
 
