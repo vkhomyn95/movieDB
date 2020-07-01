@@ -42,6 +42,7 @@ export const Pagination = (props) => {
                             {pageLinks}
 
                             <li className="page-item">
+                                // eslint-disable-next-line
                                 <a className={`page-link ${!isDarkTheme && 'pag-dark'}`}  onClick={nextPage}>Next</a>
                             </li>
                         </ul>

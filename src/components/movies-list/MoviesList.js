@@ -17,6 +17,7 @@ const MoviesList = (props) => {
         if ((!movies.length) || currentPage) {
             props.fetchData && props.fetchData(page, getMvDataType) && props.fetchGenresData();
         }
+        // eslint-disable-next-line
     }, [page, getMvDataType]);
 
     if (getNavLinkClicked){

@@ -31,7 +31,7 @@ export const MovieDetailCard = (props) => {
                 <div className="info_section">
                     <div className="movie_header">
                         <img className="locandina"
-                             src={`https://image.tmdb.org/t/p/w300${poster_path}?api_key=${API_KEY}`}/>
+                             src={`https://image.tmdb.org/t/p/w300${poster_path}?api_key=${API_KEY}`} alt="photo"/>
                         <h1>{title}</h1>
                         <h4>{release_date}, David Ayer</h4>
                         <span className="minutes">{runtime} min</span>
