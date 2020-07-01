@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { MovieListCard } from "../movie-list-card/MovieListCard";
 import {fetchGenresData} from "../../actions/getGenres";
 import {Pagination} from "../pagination/Pagination";
-import {ViewPortContext} from "../../context/ViewPortContext";
 import './MovieList.scss'
 import {DarkThemeContext} from "../../context/DarkThemeContext";
 

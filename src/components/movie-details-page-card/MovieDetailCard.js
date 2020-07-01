@@ -5,21 +5,21 @@ import {StarRating} from "../stars-rating/StarRating";
 
 export const MovieDetailCard = (props) => {
     const {movie} = props;
-    const {adult,
+    const {
            backdrop_path,
-           genres,
+           // genres,
            homepage,
            original_language,
-           original_title,
+           // original_title,
            overview,
            poster_path,
-           production_countries,
+           // production_countries,
            release_date,
            runtime,
-           spoken_languages,
+           // spoken_languages,
            title,
-           status,
-           vote_count,
+           // status,
+           // vote_count,
            vote_average } = movie;
 
     const urlBack = `https://image.tmdb.org/t/p/w300${backdrop_path}?api_key=${API_KEY}`;

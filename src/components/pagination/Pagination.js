@@ -14,6 +14,7 @@ export const Pagination = (props) => {
     const pageLinks = [];
     for (let i = leftSide ; i <= rightSide; i++){
         let active = props.currentPage === i ? 'active' : '';
+        // eslint-disable-next-line
         pageLinks.push(<li className={`page-item ${active}`} key={i} onClick={() => {props.nextPage(i); setCurrentPage(i)}}><a className={`page-link ${!isDarkTheme && 'pag-dark'}`} href="#">{i}</a> </li>)
     }
     const nextPage = () => {
@@ -41,7 +42,7 @@ export const Pagination = (props) => {
                             {pageLinks}
 
                             <li className="page-item">
-                                <a className={`page-link ${!isDarkTheme && 'pag-dark'}`} href="#" onClick={nextPage}>Next</a>
+                                <a className={`page-link ${!isDarkTheme && 'pag-dark'}`}  onClick={nextPage}>Next</a>
                             </li>
                         </ul>
                     </nav>

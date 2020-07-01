@@ -12,8 +12,6 @@ export const Header = () => {
     const [isSmallScreen, setSmallScreen] = useState(false);
     const [isDropdownLinks, setDropdownLinks] = useState(false);
 
-    const container = React.createRef();
-
     const toggleNav = () => {
         setNavVisibility(!isNavVisible);
         setDropdownLinks(!isDropdownLinks);

@@ -10,6 +10,7 @@ export const MovieDetailsPage = (props) => {
     const [error,setError] = useState('');
     useEffect(() => {
         loadMovie()
+        // eslint-disable-next-line
     },[props.match.params.id]);
 
     const loadMovie = async () => {
@@ -29,7 +30,7 @@ export const MovieDetailsPage = (props) => {
         }
     };
     const darkTheme = useContext(DarkThemeContext);
-    const {isDarkTheme,toggleTheme} = darkTheme;
+    const {isDarkTheme} = darkTheme;
     return (
         <div className={`${!isDarkTheme ? 'movie-card-wrapper-dark' : 'movie-card-wrapper' }`}>
             {
