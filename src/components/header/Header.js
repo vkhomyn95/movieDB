@@ -46,7 +46,7 @@ export const Header = () => {
         <div className="may-header" ref={container}>
             <div className="may-header-wrapper navbar">
                 <nav className="navbar navbar-expand-lg navbar-light">
-                    <img src={Logo} className="may-header-logo" alt="logo"/>
+                    <a href="/"><img src={Logo} className="may-header-logo" alt="logo"/></a>
                 </nav>
                 <div className="dropdown-wrapper">
                     <button onClick={toggleNav} className="toggler"><i className="fa fa-bars fa-2x" aria-hidden="true"></i></button>

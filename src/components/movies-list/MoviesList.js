@@ -5,6 +5,7 @@ import { MovieListCard } from "../movie-list-card/MovieListCard";
 import uniqueId from "uniqueid";
 import {fetchGenresData} from "../../actions/getGenres";
 import {Pagination} from "../pagination/Pagination";
+import './MovieList.scss'
 
 const MoviesList = (props) => {
     const {currentPage, totalResults} = props;
@@ -35,16 +36,17 @@ const MoviesList = (props) => {
     const numberPages = Math.floor(totalResults/ 20)
     return (
         <div className="container" >
-            <div className="row">
+                <div className="card-columns">
+                    {
+                        movies.map(movie => (
+                            <MovieListCard movie={movie} key={movie.id} />
+                        ))
+                    }
+                </div>
             {
-                movies.map(movie => (
-                        <MovieListCard movie={movie} key={movie.id} />
-                    ))
+                <Pagination pages={numberPages} nextPage={nextPage} currentPage={currentPage}/>
             }
-            {
-                 <Pagination pages={numberPages} nextPage={nextPage} currentPage={currentPage}/>
-            }
-            </div>
+
         </div>
     );
 };

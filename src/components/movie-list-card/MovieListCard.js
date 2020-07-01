@@ -16,13 +16,13 @@ export const MovieListCardComponent = (props) => {
 
 
     return (
-             <div className="col-sm-3" key={movie.id}>
-                <div className="card" onClick={goToPage}>
+
+                <div className="card " onClick={goToPage}>
                     <PosterPreview poster_path={movie.poster_path} key={movie.id}/>
                     <GenreBadge genres={arr}/>
                     <MoviePreviewInfo movieInfo={movie}/>
                 </div>
-            </div>
+
     );
 };
 const mapDispathToProps = ({
